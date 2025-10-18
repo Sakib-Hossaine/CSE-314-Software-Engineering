@@ -6,31 +6,71 @@
 {% endblock styles %}
 
 {% block content %}
+    <!-- Animated Background Elements -->
+    <div class="geometric-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+    
+    <div class="particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
     <div class="routine-container">
-        <h1>Class Routine</h1>
-        <table>
-            <thead>
-                <tr>
-                    {% for slot in time_slots %}
-                        <th>{{ slot }}</th>
+        <div class="routine-header">
+            <h1 class="routine-title">Class Routine</h1>
+            <p class="routine-subtitle">Your weekly schedule at a glance</p>
+        </div>
+        
+        <div class="table-wrapper">
+            <table class="routine-table">
+                <thead>
+                    <tr>
+                        {% for slot in time_slots %}
+                            <th class="{% if forloop.first %}day-header{% else %}time-slot{% endif %}">
+                                {{ slot }}
+                            </th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for day_row in timetable %}
+                    <tr>
+                        {% for cell in day_row %}
+                            {% if forloop.first %}
+                                <td class="day-cell">{{ cell }}</td>  <!-- Day name -->
+                            {% else %}
+                                <td class="{% if cell %}class-cell{% else %}empty-cell{% endif %}">
+                                    {% if cell %}
+                                        <div class="class-info">
+                                            <span class="class-code">{{ cell.code }}</span>
+                                            {% if cell.room %}
+                                                <small class="room-info">{{ cell.room }}</small>
+                                            {% endif %}
+                                        </div>
+                                    {% else %}
+                                        <span class="no-class">Free</span>
+                                    {% endif %}
+                                </td>
+                            {% endif %}
+                        {% endfor %}
+                    </tr>
                     {% endfor %}
-                </tr>
-            </thead>
-            <tbody>
-                {% for day_row in timetable %}
-                <tr>
-                    {% for cell in day_row %}
-                        {% if forloop.first %}
-                            <td>{{ cell }}</td>  <!-- Day name -->
-                        {% else %}
-                            <td class="{% if cell %}class-cell{% endif %}">
-                                {% if cell %}{{ cell.code }}{% endif %}
-                            </td>
-                        {% endif %}
-                    {% endfor %}
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </div>
     </div>
 {% endblock content %}

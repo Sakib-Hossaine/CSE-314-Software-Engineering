@@ -94,10 +94,30 @@
         opacity: .3;
         transition: 0s;
     }
+
+    /* Hero image styles */
+    .signup-hero {
+        width: 50%;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .hero-image {
+        width: 100%;
+        max-width: 900px;
+        height: auto;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+    }
+
+    .hero-image:hover {
+        transform: scale(1.02);
+    }
 </style>
 <div class="signup-wrapper">
     <div class="signup-hero">
-        <img src="{% static 'images/girl.jpg' %}" alt="Let's Learn Image" class="hero-image">
+        <img src="{% static 'images/student.jpg' %}" alt="Let's Learn Image" class="hero-image">
     </div>
     <div class="signup-content">
         <h1 class="site-name animate-pop">Join Let's Learn to activate your Learning</h1>

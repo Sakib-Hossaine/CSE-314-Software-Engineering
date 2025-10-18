@@ -125,8 +125,16 @@
         
         <div class="meet-title">Start Your Class</div>
         <div class="meet-desc">
-            Welcome, Teacher! Launch your live class session below.<br>
-            Please ensure your camera and microphone are enabled for the best experience.
+            {% if request.user.is_authenticated and request.user.user_type == 'student' %}
+                Welcome, {{ request.user.username }} ! <br>Join your live class session below.<br>
+                Please ensure your camera and microphone are enabled for the best experience.
+            {% elif request.user.is_authenticated and request.user.user_type == 'teacher' %}
+                Welcome, {{ request.user.username }}! <br> Launch your live class session below.<br>
+                Please ensure your camera and microphone are enabled for the best experience.
+            {% else %}
+                Welcome! Launch your live class session below.<br>
+                Please ensure your camera and microphone are enabled for the best experience.
+            {% endif %}
         </div>
         <div class="meet-image-box">
             <img src="{% static 'images/cls.jpg' %}" alt="Online Class" class="class-illustration">

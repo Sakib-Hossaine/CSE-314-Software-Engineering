@@ -36,6 +36,49 @@
         </table>
     </div>
     
+    {# If there are no real marks, show a static sample/demo table to illustrate the layout #}
+    {% if not marks %}
+    <div class="sample-marks">
+        <h2>Sample Marks </h2>
+        <table class="marks-table">
+            <thead>
+                <tr>
+                    <th>Subject</th>
+                    <th>Marks</th>
+                    <th>Grade</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Mathematics</td>
+                    <td>92</td>
+                    <td>A</td>
+                    <td>2025-05-20</td>
+                </tr>
+                <tr>
+                    <td>English</td>
+                    <td>88</td>
+                    <td>A-</td>
+                    <td>2025-05-18</td>
+                </tr>
+                <tr>
+                    <td>Science</td>
+                    <td>85</td>
+                    <td>B+</td>
+                    <td>2025-05-19</td>
+                </tr>
+                <tr>
+                    <td>History</td>
+                    <td>79</td>
+                    <td>B</td>
+                    <td>2025-05-17</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+    
     <div class="action-buttons">
         <a href="{% url 'users:student_profile' %}" class="btn">Back to Profile</a>
     </div>

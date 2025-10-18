@@ -52,3 +52,4 @@ virtualenv==20.29.2
 wheel==0.45.1
 win-inet-pton @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/win_inet_pton_1699472992992/work
 zstandard @ file:///C:/b/abs_31t8xmrv_h/croot/zstandard_1731356578015/work
+sslcommerz-python==0.0.7

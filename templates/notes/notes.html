@@ -1,11 +1,24 @@
 {% extends "base.html" %}
 {% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'css/notes.css' %}" />
+{% endblock styles %}
+
 {% block content %}
 <div class="NOTES-container">
     <div class="NOTES-header">
         <h1>Educational Resources Notes</h1>
         <p>Uploaded by Md. Sakib Hossaine</p>
+
     </div>
+
+
+    {% if request.user.is_authenticated and request.user.user_type == 'teacher' %}
+    <div class="NOTES-add-float-btn-wrapper">
+        <a href="{% url 'add_note' %}" class="NOTES-add-float-btn">Add Note</a>
+    </div>
+    {% endif %}
 
     <div class="NOTES-content">
         <h2>EDUCATIONAL RESOURCES NOTES</h2>
@@ -36,6 +49,10 @@
                 Download
             </a>
             <button class="NOTES-report-button" onclick="reportItem({{ note.id }})">Report</button>
+            {% if request.user.is_authenticated and request.user.user_type == 'teacher' %}
+            <a href="{% url 'edit_note' note.id %}" class="NOTES-edit-button">Edit</a>
+            <a href="{% url 'delete_note' note.id %}" class="NOTES-delete-button">Delete</a>
+            {% endif %}
         </div>
         {% empty %}
         <p>No notes available yet.</p>

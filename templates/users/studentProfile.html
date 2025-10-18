@@ -278,7 +278,13 @@
     <div class="profile-details">
         <div class="detail-card">
             <h3>Class Information</h3>
-            <p><strong>Class:</strong> {{ student.class_name }}</p>
+            <p><strong>Class:</strong>
+            {% if student.joined_classes.all %}
+                {{ student.joined_classes.first.category.name }}
+            {% else %}
+                {{ student.class_name }}
+            {% endif %}
+            </p>
             <p><strong>School:</strong> {{ student.school_name }}</p>
         </div>
         
@@ -292,6 +298,7 @@
     
     <div class="action-buttons">
         <a href="{% url 'users:student_marks' %}" class="btn btn-primary">View Exam Marks</a>
+        <a href="{% url 'users:teacher_class_call' %}" class="btn btn-primary">Join Video Call</a>
         <a href="{% url 'users:logout' %}" class="btn btn-danger" style="margin-left:10px;">Logout</a>
     </div>
 </div>
