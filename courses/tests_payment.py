@@ -4,6 +4,7 @@ from .models import Course, Payment
 from .models import Instructor
 
 
+
 class PaymentInitTest(TestCase):
     def setUp(self):
         User = get_user_model()
