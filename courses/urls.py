@@ -1,6 +1,6 @@
 from django.urls import path, include
 from . import views
-
+# in this page all url paths
 urlpatterns = [
     path("courses/", views.courses, name="courses"),
     path("courses/<int:pk>/", views.course_detail, name="course_detail"),
