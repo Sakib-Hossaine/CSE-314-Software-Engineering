@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
+
 <div class="class-list-container">
     <h2>All Classes</h2>
     {% if request.user.is_authenticated and request.user.user_type == 'teacher' %}
