@@ -8,10 +8,14 @@
 {% block content %}
 <div class="NOTES-container">
     <div class="NOTES-header">
-        <h1>Educational Resources Notes</h1>
-        <p>Uploaded by Md. Sakib Hossaine</p>
 
+        <h1>Educational Resources Notes</h1>
+        <p>Uploaded by Md. Sakib Hossaine , Meher Afroz, Jannatul Maowa </p>
+        
     </div>
+
+
+
 
 
     {% if request.user.is_authenticated and request.user.user_type == 'teacher' %}
@@ -28,6 +32,7 @@
             <li>Textbooks and printed materials (e.g., workbooks, reference books)</li>
             <li>Digital content, such as eBooks, educational websites, videos, and apps</li>
             <li>Lesson plans, worksheets, and other teacher-created materials</li>
+            <li>Easy to download and read</li>
             <li>Interactive tools like educational songs and virtual labs.</li>
         </ul>
     </div>
