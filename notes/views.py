@@ -25,6 +25,8 @@ def notes(request):
     notes = Note.objects.all().order_by("-upload_date")
     return render(request, "notes/notes.html", {"notes": notes})
 
+# teacher login required for this task
+
 
 @login_required
 @teacher_required
