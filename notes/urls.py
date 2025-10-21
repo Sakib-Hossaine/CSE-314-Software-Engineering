@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+# all urls of notes are here
 
 urlpatterns = [
     path("notes/", views.notes, name="notes"),
