@@ -111,3 +111,26 @@ LOGIN_URL = "users:login"
 LOGIN_REDIRECT_URL = "users:profile"
 
 import os
+# SSLCommerz payment gateway settings (prefer environment variables in prod)
+SSLCOMMERZ = {
+    # prefer environment variables in production; fallback to sandbox test creds
+    "STORE_ID": os.getenv("SSLCOMMERZ_STORE_ID", "letsl68f3ded56916e"),
+    "STORE_PASS": os.getenv("SSLCOMMERZ_STORE_PASS", "letsl68f3ded56916e@ssl"),
+    # set to 'False' in production environment variables when going live
+    "IS_SANDBOX": os.getenv("SSLCOMMERZ_IS_SANDBOX", "True").lower() in ("1", "true", "yes"),
+}
+
+# Derive API endpoints for convenience
+if SSLCOMMERZ.get("IS_SANDBOX"):
+    SSLCOMMERZ["SESSION_API"] = "https://sandbox.sslcommerz.com/gwprocess/v3/api.php"
+    SSLCOMMERZ["VALIDATION_API"] = (
+        "https://sandbox.sslcommerz.com/validator/api/validationserverAPI.php"
+    )
+    # test phone to use when sandboxing (fallback when user has no phone)
+    SSLCOMMERZ["TEST_CUSTOMER_PHONE"] = os.getenv("SSLCOMMERZ_TEST_CUSTOMER_PHONE", "01700000000")
+else:
+    SSLCOMMERZ["SESSION_API"] = "https://securepay.sslcommerz.com/gwprocess/v3/api.php"
+    SSLCOMMERZ["VALIDATION_API"] = (
+        "https://securepay.sslcommerz.com/validator/api/validationserverAPI.php"
+    )
+    SSLCOMMERZ["TEST_CUSTOMER_PHONE"] = os.getenv("SSLCOMMERZ_TEST_CUSTOMER_PHONE", "")
